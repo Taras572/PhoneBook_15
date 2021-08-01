@@ -1,0 +1,72 @@
+<div class="container">
+    <hr>
+
+    <div class="input-group mb-3">
+        <input [(ngModel)]="searchField" name="searchField" type="text" class="form-control"
+            aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-success col-3" type="button" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Add</button>
+    </div>
+
+    <hr>
+
+    <table class="table_1">
+        <tr class>
+            <td>#</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Number</td>
+            <td>Edit</td>
+            <td>DELETE</td>
+        </tr>
+
+        <tr *ngFor="let task of Mas_Inform | inform: searchField; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{task.name}}</td>
+            <td>{{task.second_name}}</td>
+            <td>{{task.number}}</td>
+            <td><button (click)="Edit_btn(i)" type="button" class="btn btn-warning" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Edit</button></td>
+            <td><button (click)="Delete_btn(i)" type="button" class="btn btn-danger delete">Delete</button></td>
+        </tr>
+
+    </table>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add modal</h5>
+                    <button (click)="Clear()" type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input [(ngModel)]="Input_name" type="text" class="form-control" id="floatingInput"
+                            placeholder="name@example.com">
+                        <label for="floatingInput">First name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input [(ngModel)]="Input_second_name" type="text" class="form-control" id="floatingInput"
+                            placeholder="name@example.com">
+                        <label for="floatingInput">Second name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input [(ngModel)]="Input_number" type="text" class="form-control" id="floatingInput"
+                            placeholder="name@example.com">
+                        <label for="floatingInput">Number</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="Confirm_btn()" *ngIf="!isShow" type="button" class="btn btn-primary"
+                        data-bs-dismiss="modal">Save</button>
+                    <button (click)="Save_btn()" *ngIf="isShow" type="button" class="btn btn-primary"
+                        data-bs-dismiss="modal">Save</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
